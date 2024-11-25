@@ -1,0 +1,25 @@
+{
+
+    "name": "AT Notification Clicker",
+    "version": "1.0",
+    "description":"Clicking the student matched message and send text to student",
+    "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+    "background": {
+      "js": ["background.js"]
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://*.amazingtalker.com/*"],
+        "js": ["contentScript.js"]
+      }
+    ],
+    "action": {
+        "default_title":"AT Notification Clicker",
+        "default_popup":"popup.html"
+    },
+    "manifest_version":3 
+  }
+  
