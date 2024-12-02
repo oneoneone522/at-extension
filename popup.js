@@ -20,16 +20,7 @@ document.addEventListener("DOMContentLoaded", async() =>{
             }else {
                 console.error("Failed to fetch counter: ", chrome.runtime.lastError);
             }
-        }
-        // Request the tester count from background.js
-        chrome.runtime.sendMessage({ type: "GET_TESTER" }, (response) => {
-            if (response && response.testerCount !== undefined) {
-                viewTesterCount(response.testerCount);
-            } else {
-                console.error("Failed to fetch tester count:", chrome.runtime.lastError);
-            }
-        });
-        
+        }        
     }
     else {
         const container = document.getElementsByClassName("container")[0];
@@ -43,10 +34,6 @@ chrome.runtime.onMessage.addListener((message) => {
         const counter = document.getElementById("counter");
         counter.textContent = message.count;
     }
-    else if (message.type === "UPDATE_TESTER_COUNTER") {
-        const tester = document.getElementById("tester");
-        tester.textContent = message.testerCount;
-    }
 })
 const viewCounter = (count) => {
     const counterElement = document.getElementById("counter");
@@ -55,11 +42,4 @@ const viewCounter = (count) => {
         counterElement.innerHTML = count;
     }
     
-}
-const viewTesterCount = (testerCount) => {
-    const testerElement = document.getElementById("tester");
-    testerElement.innerHTML = 0;
-    if(testerCount > 0) {
-        testerElement.innerHTML = testerCount;
-    }
 }
