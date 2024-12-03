@@ -10,6 +10,7 @@ function checkAndClickNotification() {
         console.log("Notification clicked!");
         const card = getElementsByClassName("v-card__actions");
         if (card) {
+            console.log("Card element caught!");
             const send_btn = document.getElementsByClassName("button is-secondary")[0];
             if (send_btn) {
                 send_btn.click();
@@ -18,6 +19,13 @@ function checkAndClickNotification() {
             }
             return true;
         }
+        const send_btn = document.getElementsByClassName("button is-secondary")[0];
+            if (send_btn) {
+                send_btn.click();
+                chrome.runtime.sendMessage({type: "MESSAGE_SENT" });
+                chrome.runtime.sendMessage({type: "UPDATE_COUNTER"});// If text is sent to the student, send a message to background script
+            }
+            return true;
         
         
     }
