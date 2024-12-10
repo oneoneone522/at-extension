@@ -34,16 +34,7 @@ function checkAndClickNotification() {
         //Tell background that the tester was found.
         chrome.runtime.sendMessage({type: "TESTER_FOUND"});
         console.log("tester clicked!");
-        //Extra test//
-        const inputField = document.getElementById("input-1628");
-        if (inputField) {
-            inputField.focus(); // Focus the input field
-            inputField.dispatchEvent(new KeyboardEvent('keydown', { key: 'H' }));
-            inputField.value += 'H';
-            inputField.dispatchEvent(new KeyboardEvent('keyup', { key: 'H' }));
-            const tester_send_btn = document.getElementsByClassName("button_VROdO")[0];
-            tester_send_btn.click();
-        }
+
         return true;
     }
     return false;

@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", async() =>{
     const activeTab = await getActiveTabURL();
     if (activeTab.url.includes("amazingtalker.com/dashboard/teacher")) {
         // Request the counter from background.js
-        chrome.runtime.sendMessage({type: "GET_COUNTER"}), (response) => {
+        chrome.runtime.sendMessage({ type: "GET_COUNTER" }, (response) => {
             if (response && response.count !== undefined) {
                 viewCounter(response.count);
-            }else {
-                console.error("Failed to fetch counter: ", chrome.runtime.lastError);
+            } else {
+                console.error("Failed to fetch counter:", chrome.runtime.lastError);
             }
-        }
+        });        
         // Request the tester count from background.js
         chrome.runtime.sendMessage({ type: "GET_TESTER" }, (response) => {
             if (response && response.testerCount !== undefined) {
